@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 
 class DomainChecker
 {
-    private const MAX_BODY_LENGTH = 65535;
+    private const MAX_BODY_LENGTH = 20000;
 
     public function check(Domain $domain, CheckSetting $checkSetting): CheckLog
     {

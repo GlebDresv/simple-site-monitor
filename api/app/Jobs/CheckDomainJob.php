@@ -16,7 +16,7 @@ class CheckDomainJob implements ShouldBeUnique, ShouldQueue
 
     public const QUEUE = 'domain-checks';
 
-    public int $uniqueFor = 120;
+    public int $uniqueFor = 300;
 
     public function __construct(
         public Domain $domain,
