@@ -39,10 +39,8 @@ COPY --from=frontend /app/dist /var/www/frontend/dist
 COPY railway/nginx.conf /etc/nginx/templates/default.conf.template
 COPY railway/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY railway/start-web.sh /usr/local/bin/start-web.sh
-COPY railway/run-worker.sh railway/run-worker-domain-checks.sh railway/run-scheduler.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/start-web.sh /usr/local/bin/run-worker.sh \
-    /usr/local/bin/run-worker-domain-checks.sh /usr/local/bin/run-scheduler.sh \
+RUN chmod +x /usr/local/bin/start-web.sh \
     && rm -f /etc/nginx/sites-enabled/default \
     && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache

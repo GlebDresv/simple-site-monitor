@@ -10,7 +10,7 @@ Monorepo: Laravel 12 API + React Admin frontend + PostgreSQL + Redis.
 ├── docker/
 │   └── nginx/                # nginx для локальной разработки
 ├── frontend/                 # React + react-admin
-├── railway/                  # production-деплой (Dockerfile, nginx, worker-скрипты)
+├── railway/                  # production-деплой (Dockerfile, nginx, supervisor)
 ├── railway.toml              # конфиг Railway (только в корне репозитория)
 └── docker-compose.yml        # локальная разработка
 ```
