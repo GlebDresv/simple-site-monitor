@@ -110,6 +110,6 @@ class DomainChecker
             return $body;
         }
 
-        return substr($body, 0, self::MAX_BODY_LENGTH);
+        return mb_strcut($body, 0, self::MAX_BODY_LENGTH, 'UTF-8');
     }
 }
