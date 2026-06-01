@@ -18,7 +18,6 @@ class NotificationSetting extends Model
         'tg_chat_id',
         'notify_on_shutdown',
         'notify_on_recovery',
-        'debounce_interval',
     ];
 
     protected function casts(): array
@@ -26,7 +25,6 @@ class NotificationSetting extends Model
         return [
             'notify_on_shutdown' => 'boolean',
             'notify_on_recovery' => 'boolean',
-            'debounce_interval' => 'integer',
         ];
     }
 

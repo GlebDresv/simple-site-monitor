@@ -14,7 +14,6 @@ class UpdateNotificationSettingRequest extends AuthenticatedRequest
             'tg_chat_id' => ['sometimes', 'string', 'max:255', app(TelegramBotInChat::class)],
             'notify_on_shutdown' => ['sometimes', 'boolean'],
             'notify_on_recovery' => ['sometimes', 'boolean'],
-            'debounce_interval' => ['sometimes', 'integer', 'min:5'],
         ];
     }
 }
