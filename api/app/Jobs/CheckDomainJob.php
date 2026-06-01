@@ -6,15 +6,17 @@ use App\Models\CheckSetting;
 use App\Models\Domain;
 use App\Services\DomainCheck\DomainChecker;
 use App\Services\DomainCheck\DomainStatusUpdater;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Queue\Middleware\WithoutOverlapping;
 
-class CheckDomainJob implements ShouldQueue
+class CheckDomainJob implements ShouldBeUnique, ShouldQueue
 {
     use Queueable;
 
     public const QUEUE = 'domain-checks';
+
+    public int $uniqueFor = 120;
 
     public function __construct(
         public Domain $domain,
@@ -23,14 +25,9 @@ class CheckDomainJob implements ShouldQueue
         $this->onQueue(self::QUEUE);
     }
 
-    /**
-     * @return list<WithoutOverlapping>
-     */
-    public function middleware(): array
+    public function uniqueId(): string
     {
-        return [
-            (new WithoutOverlapping((string) $this->domain->id))->expireAfter(120),
-        ];
+        return (string) $this->domain->id;
     }
 
     public function handle(DomainChecker $checker, DomainStatusUpdater $statusUpdater): void
