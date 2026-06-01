@@ -29,10 +29,6 @@ class DomainStatusUpdater
         $domain->last_status = $newStatus;
         $domain->save();
 
-        if ($previousStatus === null || $previousStatus === DomainStatus::Unknown) {
-            return;
-        }
-
         $checkSetting->loadMissing('notificationSetting');
 
         $notificationSetting = $checkSetting->notificationSetting;
